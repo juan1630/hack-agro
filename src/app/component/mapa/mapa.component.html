@@ -1,9 +1,17 @@
-<div class="col-md-6 animated fadeInDown">
-    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
-        <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
-            <agm-info-window>{{ marcador.des }}</agm-info-window>
-        </agm-marker>
-    </agm-map>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 animated fadeInDown">
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
+                <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
+                    <agm-info-window>{{ marcador.des }}</agm-info-window>
+                </agm-marker>
+            </agm-map>
 
-    <button (click)="_ms.guardaMarcadores() " class="btn btn-outline-primary btn-block "> Guardar cambios </button>
+            <button (click)="_ms.guardaMarcadores() " class="btn btn-outline-primary btn-block "> Guardar cambios </button>
+        </div>
+
+        <div class="col-md-6">
+            <app-grafico></app-grafico>
+        </div>
+    </div>
 </div>

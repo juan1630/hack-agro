@@ -9,6 +9,9 @@ import { TiendaComponent } from './component/tienda/tienda.component';
 import { HomeComponent } from './component/home/home.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { MapaComponent } from './component/mapa/mapa.component';
+import { ChartsModule } from 'ng2-charts';
+
+
 
 // servicios
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +19,7 @@ import { routes } from './app.routes';
 
 import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './component/login/login.component';
+import { GraficoComponent } from './component/grafico/grafico.component';
 
 
 @NgModule({
@@ -27,10 +31,12 @@ import { LoginComponent } from './component/login/login.component';
     DashboardComponent,
     HomeComponent,
     MapaComponent,
-    LoginComponent
+    LoginComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,
+    ChartsModule,
     HttpClientModule,
     RouterModule.forRoot( routes, { useHash: false } ),
     AgmCoreModule.forRoot({
