@@ -32,7 +32,7 @@ export class MapaComponent implements OnInit {
         lng: evento.coords.lng,
         titulo: 'Sin titulo',
         draggable: true,
-        des: 'Centros'
+        des: 'Hormigas'
       };
     this._ms.insertarMarcador(nuevoMarcdor);
     }

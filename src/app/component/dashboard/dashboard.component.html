@@ -1,3 +1,39 @@
-<p>
-  dashboard works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="card animated bounceInLeft" style="width: 18rem;" *ngFor="let clima of climas">
+            <div class="card-body">
+                <p class="card-text">
+                    Temperatura minima {{clima.main.temp_min}}<i class="fas fa-cloud"></i>
+                </p>
+                <p class="card-text">
+                    Temperatura máxima {{clima.main.temp_max}}
+                    <i class="far fa-sun"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-2 ">
+            <h1>
+                Tips
+            </h1>
+            <ul>
+                <li>
+                    Regarlas por la mañana o por la noche, nunca realizarlo por las tardes por que se marchitan.
+                </li>
+                <li>
+                    Cuando se tiene de planta un helecho o una patita de elefante, es mejor cortar un poco menos de la mitad de sus hojas, para que estas crescan de una mejor forma y no se sequen.
+                </li>
+                <li>
+                    Si se tiene una planta de sombra nunca exponerla al sol porque esta al estar, expuesta se marchitará inediatamente.
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-3 offset-md-3">
+            <img src="../../../assets/images/8l.png" class='img animated infinite rotateOut' alt="">
+        </div>
+    </div>
+</div>

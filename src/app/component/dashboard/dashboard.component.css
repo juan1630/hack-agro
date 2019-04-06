@@ -1,0 +1,18 @@
+.card {
+    margin: 5px;
+}
+
+.fa-cloud {
+    margin-left: 10px;
+    color: #2ECCFA;
+}
+
+.fa-sun {
+    margin-left: 10px;
+    color: #FFFF00;
+}
+
+.img {
+    width: 90%;
+    margin-top: 40px;
+}

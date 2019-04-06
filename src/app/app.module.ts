@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 
 import { AgmCoreModule } from '@agm/core';
+import { LoginComponent } from './component/login/login.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { AgmCoreModule } from '@agm/core';
     TiendaComponent,
     DashboardComponent,
     HomeComponent,
-    MapaComponent
+    MapaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

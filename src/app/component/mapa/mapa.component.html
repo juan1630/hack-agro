@@ -1,7 +1,7 @@
-<div class="col-md-8">
+<div class="col-md-6 animated fadeInDown">
     <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
-        <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i=i ndex ">
-            <agm-info-window>{{ marcador.titulo }}</agm-info-window>
+        <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
+            <agm-info-window>{{ marcador.des }}</agm-info-window>
         </agm-marker>
     </agm-map>
 

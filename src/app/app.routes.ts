@@ -1,3 +1,4 @@
+import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { MapaComponent } from './component/mapa/mapa.component';
 import { HomeComponent } from './component/home/home.component';
@@ -13,6 +14,7 @@ export const routes: Routes = [
     { path: 'tienda', component: TiendaComponent },
     { path: 'dashboard' , component: DashboardComponent },
     { path: 'mapa', component: MapaComponent },
+    { path: 'login', component: LoginComponent },
     { path: '', redirectTo: '/home' , pathMatch: 'full' }
 ];
 

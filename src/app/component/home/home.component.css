@@ -8,3 +8,11 @@ ul li {
     list-style: none;
     font-weight: 300;
 }
+
+.card {
+    margin-bottom: 50px;
+}
+
+h1 {
+    text-align: center;
+}
