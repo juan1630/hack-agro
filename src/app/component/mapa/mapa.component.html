@@ -1,0 +1,9 @@
+<div class="col-md-8">
+    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
+        <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i=i ndex ">
+            <agm-info-window>{{ marcador.titulo }}</agm-info-window>
+        </agm-marker>
+    </agm-map>
+
+    <button (click)="_ms.guardaMarcadores() " class="btn btn-outline-primary btn-block "> Guardar cambios </button>
+</div>
