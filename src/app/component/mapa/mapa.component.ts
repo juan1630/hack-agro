@@ -2,7 +2,7 @@ import {  OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { MapaServiceService } from '../../service/mapa-service.service';
-
+import { FormGroup,  FormControl, Validators } from '@angular/forms';
 import { Marcador } from '../../../interface/marcador.interface';
 
 @Component({
@@ -16,6 +16,7 @@ export class MapaComponent implements OnInit {
   zoom = 16;
   marcadorSel: any = null;
   draggable = '1';
+  plaga: string;
 
   // tslint:disable-next-line:variable-name
   constructor( public _ms: MapaServiceService ) {
@@ -23,6 +24,12 @@ export class MapaComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  agregar( valor: string ) {
+    if ( valor.length <= 2 ) {
+      return;
+    } else {
+    }
   }
 
   clickMap( evento ) {
@@ -72,6 +79,5 @@ cambiarDraggable() {
     this.marcadorSel.draggable = false;
   }
 }
-
 
 }

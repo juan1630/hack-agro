@@ -1,17 +1,29 @@
+<h1 class="title text-center">SIMULADOR DE PLAGAS EN TIEMPO REAL</h1>
+<p class="title text-center">Representa de manera visual los resultados que se generan día a día, para saber que tipo de plaga es la que más afecta a cada región visualizandola en el momento</p>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 animated fadeInDown">
             <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
                 <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
-                    <agm-info-window>{{ marcador.des }}</agm-info-window>
+                    <agm-info-window>{{ plaga }}</agm-info-window>
                 </agm-marker>
             </agm-map>
 
-            <button (click)="_ms.guardaMarcadores() " class="btn btn-outline-primary btn-block "> Guardar cambios </button>
+            <button (click)="_ms.guardaMarcadores()" class="btn btn-outline-primary btn-block "> Guardar cambios </button>
         </div>
-
         <div class="col-md-6">
-            <app-grafico></app-grafico>
+            <form>
+                <div class="form-group">
+                    <label for="plaga"> Agrega la plaga </label>
+                    <input type="text" [(ngModel)]="plaga" #f name="plaga" id="plaga" placeholder="Agrega la plaga" class="form-control">
+                    <button (click)="agregar( f.value )" class="btn btn-primary btn-block"> Agregar un plaga </button>
+                </div>
+            </form>
         </div>
+    </div>
+
+    <div class="col-md-6 animated fadeIn">
+        <app-grafico></app-grafico>
     </div>
 </div>

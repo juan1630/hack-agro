@@ -4,14 +4,13 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { PerfilComponent } from './component/perfil/perfil.component';
 import { TiendaComponent } from './component/tienda/tienda.component';
 import { HomeComponent } from './component/home/home.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { MapaComponent } from './component/mapa/mapa.component';
 import { ChartsModule } from 'ng2-charts';
 
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // servicios
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +25,6 @@ import { GraficoComponent } from './component/grafico/grafico.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    PerfilComponent,
     TiendaComponent,
     DashboardComponent,
     HomeComponent,
@@ -37,6 +35,8 @@ import { GraficoComponent } from './component/grafico/grafico.component';
   imports: [
     BrowserModule,
     ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot( routes, { useHash: false } ),
     AgmCoreModule.forRoot({

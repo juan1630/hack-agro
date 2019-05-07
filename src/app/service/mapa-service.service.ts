@@ -44,5 +44,4 @@ export class MapaServiceService {
     this.guardaMarcadores();
   }
 
-
 }

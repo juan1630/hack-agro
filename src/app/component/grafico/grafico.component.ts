@@ -10,7 +10,7 @@ import { MultiDataSet, Label } from 'ng2-charts';
 })
 export class GraficoComponent implements OnInit {
 
-  public doughnutChartLabels: Label[] = ['Pulgon', 'Hormigas', 'Chpulines'];
+  public doughnutChartLabels: Label[] = [];
   public doughnutChartData: MultiDataSet = [
     [100, 50, 90],
     [50, 10, 17],
