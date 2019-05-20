@@ -16,10 +16,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 
+import { environment } from '../environments/environment.prod';
 import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './component/login/login.component';
 import { GraficoComponent } from './component/grafico/grafico.component';
+import { RegisterComponent } from './component/register/register.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { GraficoComponent } from './component/grafico/grafico.component';
     HomeComponent,
     MapaComponent,
     LoginComponent,
-    GraficoComponent
+    GraficoComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { GraficoComponent } from './component/grafico/grafico.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SocketIoModule.forRoot(config),
     RouterModule.forRoot( routes, { useHash: false } ),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCn2YA96kDTaKhTQePpEt8bpNf_9QVYJnU'

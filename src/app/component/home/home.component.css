@@ -1,18 +1,33 @@
-#carouselExampleIndicators {
-    max-width: 70%;
-    padding-top: 150px;
-    margin: 0px auto;
-}
-
-ul li {
-    list-style: none;
-    font-weight: 300;
-}
-
-.card {
-    margin-bottom: 50px;
-}
-
-h1 {
-    text-align: center;
-}
+    #carouselExampleIndicators {
+        max-width: 70%;
+        padding-top: 7%;
+        margin: 0px auto;
+    }
+    
+    ul li {
+        list-style: none;
+        font-weight: 300;
+    }
+    
+    .card {
+        margin-bottom: 50px;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    /* 
+background queda pendiente 
+*/
+    
+    img {
+        width: 200%;
+    }
+    
+    .span6 {
+        width: 20%;
+    }
+    
+    .section {
+        margin-top: 5%;
+    }

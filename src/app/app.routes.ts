@@ -4,15 +4,17 @@ import { MapaComponent } from './component/mapa/mapa.component';
 import { HomeComponent } from './component/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TiendaComponent } from './component/tienda/tienda.component';
+import { RegisterComponent } from './component/register/register.component';
 
 
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent},
-   { path: 'tienda', component: TiendaComponent },
+    { path: 'tienda', component: TiendaComponent },
     { path: 'dashboard' , component: DashboardComponent },
     { path: 'mapa', component: MapaComponent },
     { path: 'login', component: LoginComponent },
-    { path: '', redirectTo: '/home' , pathMatch: 'full' }
+    { path: 'cuenta', component: RegisterComponent },
+    { path: '**', redirectTo: '/login' , pathMatch: 'full' }
 ];
 

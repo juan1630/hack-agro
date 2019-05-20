@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+.formulario {
+    margin-top: 15%;
+}
+
+section.spacer {
+    padding: 90px 0 70px;
+    color: #fcfcfc;
+    width: 100%;
+}
+
+.spacer.green,
+.section.green {
+    background: #1bac91;
+}
+
+.spacer.green,
+.section.green h4 {
+    color: #fff;
+}
+
+.spacer.green,
+.section.green {
+    background: #1bac91;
+}
+
+.spacer.green,
+.section.green h4 {
+    color: #fff;
+}
+
+.spacer.yellow,
+.section.yellow {
+    background: #ffe873;
+}
+
+.spacer.orange,
+.section.orange {
+    background: #f36f36;
+}
+
+blockquote.large {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+blockquote {
+    font-size: 18px;
+    border: none;
+    padding: 0;
+}
+
+blockquote.large {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+blockquote.large:before {
+    font-size: 64px;
+    font-family: FontAwesome;
+    content: "\f10d";
+    margin-right: 20px;
+}
+
+h4 {
+    margin-bottom: 20px;
+}
+
+.span6 {
+    width: 30%;
+    margin: 0 5% 10px 7%;
+}
+
+.parrafo {
+    text-align: center;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+i {
+    margin-left: 2px;
+    font-size: 40px;
+}
+
+.spacer.green {
+    margin-bottom: 20px;
+}

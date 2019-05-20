@@ -1,9 +1,14 @@
-import {  OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+
+import { NgModule, Component, OnInit } from '@angular/core';
 import { MapaServiceService } from '../../service/mapa-service.service';
-import { FormGroup,  FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { Marcador } from '../../../interface/marcador.interface';
+import { Label, MultiDataSet } from 'ng2-charts';
+import { ChartType, ChartDataSets } from 'chart.js';
+import { GraficoService } from 'src/app/service/grafico.service';
+import { WebSocketService } from '../../service/web-socket.service';
+import { RestService } from '../../service/rest.service';
+import { Lugar } from '../../../interface/lugares';
 
 @Component({
   selector: 'app-mapa',
@@ -18,18 +23,35 @@ export class MapaComponent implements OnInit {
   draggable = '1';
   plaga: string;
 
+  public barChartLabels: Label[] = [ 'pulgon', 'hormigas', 'Insectos', 'Otras'];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
   // tslint:disable-next-line:variable-name
-  constructor( public _ms: MapaServiceService ) {
+
+  public barChartData: ChartDataSets[] = [
+    { data: [0, 0, 0, 0], label: 'Series A' }
+  ];
+
+  // tslint:disable-next-line:variable-name
+  constructor( public _ms: MapaServiceService,
+               public Gservices: GraficoService,
+               public wService: WebSocketService,
+               // tslint:disable-next-line:no-shadowed-variable
+               public RestService: RestService ) {
     _ms.cargarMarcadores();
   }
 
   ngOnInit() {
+    this.agregar();
+    this.escucharSocket();
   }
-  agregar( valor: string ) {
-    if ( valor.length <= 2 ) {
-      return;
-    } else {
-    }
+
+
+  agregar() {
+    this.Gservices.getData()
+    .subscribe( (resp: any) => {
+      this.barChartData = resp;
+     });
   }
 
   clickMap( evento ) {
@@ -56,6 +78,14 @@ export class MapaComponent implements OnInit {
 
 }
 
+escucharSocket() {
+  this.wService.escuchar('cambio-grafica')
+  .subscribe( (data: any) => {
+    console.log(data);
+    this.barChartData = data;
+   });
+
+}
 
 dragEndMarcador( marcador: Marcador, evento ) {
   const lat = evento.coords.lat;
@@ -78,6 +108,19 @@ cambiarDraggable() {
   } else {
     this.marcadorSel.draggable = false;
   }
-}
 
 }
+
+
+agregarPlaga( valor: NgForm ) {
+  this.RestService.getPlaga(valor.value)
+    .subscribe( (data: any ) => {
+      console.log(data);
+     });
+    }
+
+    agregarMarcador( marcador: Lugar ) {
+
+    }
+    }
+

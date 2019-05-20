@@ -43,5 +43,4 @@ export class MapaServiceService {
     this.marcadores.splice(i, 1);
     this.guardaMarcadores();
   }
-
 }

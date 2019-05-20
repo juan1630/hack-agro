@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-7  offset-2">
+            <form #f='ngForm' (ngSubmit)="registro(f)">
+                <div class="form-group">
+                    <label for="email"> Nombre: </label>
+                    <input type="email" [(ngModel)]="nombre" name="nombre" class="form-control" placeholder="Ingresa tu correo">
+                </div>
+                <div class="form-group">
+                    <label for="email"> Correo: </label>
+                    <input type="email" [(ngModel)]="correo" name="correo" class="form-control" placeholder="Ingresa una contraseña">
+                </div>
+                <div class="form-group">
+                    <label for="pass"> Contraseña: </label>
+                    <input type="password" placeholder="Ingresa una contraseña" name="pass" [(ngModel)]="pass" class="form-control">
+                </div>
+                <div class="text-center">
+
+
+                    <button class="btn btn-block btn-primary" type="submit"> Registrase</button>
+                    <a routerLink="/login" class="link"> Ya tienes una cuenta? </a>
+                </div>
+            </form>
+        </div>
+    </div>
