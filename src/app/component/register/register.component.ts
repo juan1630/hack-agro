@@ -20,8 +20,11 @@ export class RegisterComponent implements OnInit {
   }
 
   registro( valor: NgForm ) {
-     const usuario = new Usuario( valor.value.nombre, valor.value.correo, valor.value.pass );
-     this.restService.agregarUsuario( usuario )
+    if ( valor.invalid ) {
+      return;
+    }
+    const usuario = new Usuario( valor.value.nombre, valor.value.correo, valor.value.pass );
+    this.restService.agregarUsuario( usuario )
      .subscribe( (res: any) => {
       this.router.navigateByUrl('/home');
       this.restService.logint = true;
