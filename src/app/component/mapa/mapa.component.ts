@@ -1,26 +1,37 @@
-
-import { NgModule, Component, OnInit } from '@angular/core';
-import { MapaServiceService } from '../../service/mapa-service.service';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { Marcador } from '../../../interface/marcador.interface';
-import { Label, MultiDataSet } from 'ng2-charts';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Label } from 'ng2-charts';
 import { ChartType, ChartDataSets } from 'chart.js';
+
+/***
+ * =========================
+ *  SERVICES
+ * ==========================
+*/
 import { GraficoService } from 'src/app/service/grafico.service';
 import { WebSocketService } from '../../service/web-socket.service';
 import { RestService } from '../../service/rest.service';
+
+// ======================
+// interfaces
+// ======================
+
 import { Lugar } from '../../../interface/lugares';
+
+declare let google: any;
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css']
 })
+
 export class MapaComponent implements OnInit {
-  lat = 18.812521;
-  lng = -98.954329;
-  zoom = 16;
-  marcadorSel: any = null;
-  draggable = '1';
+
+  @ViewChild('map') mapElement: ElementRef;
+  map: google.maps.Map;
+
+  plagasResp: [] = [];
   plaga: string;
 
   public barChartLabels: Label[] = [ 'pulgon', 'hormigas', 'Insectos', 'Otras'];
@@ -32,20 +43,71 @@ export class MapaComponent implements OnInit {
     { data: [0, 0, 0, 0], label: 'Series A' }
   ];
 
+  marcadores: google.maps.Marker[] = [];
+
+  lugares: Lugar[] = [
+    {
+      nombre: 'Udemy',
+      lat: 37.784679,
+      lng: -122.395936
+    },
+    {
+      nombre: 'Bahía de San Francisco',
+      lat: 37.798933,
+      lng: -122.377732
+    },
+    {
+      nombre: 'The Palace Hotel',
+      lat: 37.788578,
+      lng: -122.401745
+    }
+  ];
+
   // tslint:disable-next-line:variable-name
-  constructor( public _ms: MapaServiceService,
-               public Gservices: GraficoService,
+  constructor( public Gservices: GraficoService,
                public wService: WebSocketService,
                // tslint:disable-next-line:no-shadowed-variable
                public RestService: RestService ) {
-    _ms.cargarMarcadores();
-  }
-
-  ngOnInit() {
-    this.agregar();
     this.escucharSocket();
   }
 
+  ngOnInit() {
+    this.cargarMapa();
+    this.agregar();
+  }
+
+  cargarMapa() {
+
+    const latLng = new google.maps.LatLng( 37.784679, -122.395936 );
+
+    const mapaOptions: google.maps.MapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapaOptions );
+    for ( const lugar of this.lugares ) {
+           this.agregarMarcador( lugar );
+    }
+  }
+
+
+  agregarMarcador( marcador: Lugar ) {
+    const latLng = new google.maps.LatLng( marcador.lng, marcador.lng );
+
+   /* const marker = new google.maps.Marker({
+      map: this.map,
+      position:  latLng
+    });
+*/
+    const marker = new google.maps.Marker({
+      map: this.map,
+      position: latLng
+    });
+
+    this.marcadores.push(marker);
+  }
 
   agregar() {
     this.Gservices.getData()
@@ -54,73 +116,24 @@ export class MapaComponent implements OnInit {
      });
   }
 
-  clickMap( evento ) {
-
-    const nuevoMarcdor: Marcador = {
-        lat: evento.coords.lat,
-        lng: evento.coords.lng,
-        titulo: 'Sin titulo',
-        draggable: true,
-        des: 'Hormigas'
-      };
-    this._ms.insertarMarcador(nuevoMarcdor);
-    }
-
-  clickMarcador( marcador: Marcador, i: number ) {
-    console.log(marcador, i);
-    this.marcadorSel = marcador;
-
-    if (this.marcadorSel.draggable) {
-      this.draggable = '1';
-    } else {
-      this.draggable = '0';
-    }
-
-}
-
 escucharSocket() {
   this.wService.escuchar('cambio-grafica')
   .subscribe( (data: any) => {
-    console.log(data);
     this.barChartData = data;
    });
 
 }
 
-dragEndMarcador( marcador: Marcador, evento ) {
-  const lat = evento.coords.lat;
-  const lng = evento.coords.lng;
-
-  marcador.lat = lat;
-  marcador.lng = lng;
-
-  // actualzamos las coordenadas
-
-  this._ms.guardaMarcadores();
-
-}
-
-cambiarDraggable() {
-  console.log(this.draggable);
-
-  if ( this.draggable === '1') {
-    this.marcadorSel.draggable = true;
-  } else {
-    this.marcadorSel.draggable = false;
-  }
-
-}
 
 
 agregarPlaga( valor: NgForm ) {
   this.RestService.getPlaga(valor.value)
     .subscribe( (data: any ) => {
-      console.log(data);
+      console.log( data[0].data );
+      this.plagasResp = data[0].data;
      });
     }
 
-    agregarMarcador( marcador: Lugar ) {
+
 
     }
-    }
-

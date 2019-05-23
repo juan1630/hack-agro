@@ -13,15 +13,17 @@ export class RestService {
 
   constructor( private http: HttpClient ) { }
 
+
   login(usuario: Usuario) {
     const url = `${URL_SERVICE}/login`;
-    console.log(  usuario);
 
     return this.http.post(url, usuario)
     .pipe( map( (resp: any) => {
 
       console.log(resp);
-      localStorage.setItem('user', resp);
+
+      localStorage.setItem('token', resp.token);
+      localStorage.setItem('nombre', resp.nombre);
       this.logint = true;
       return resp.usuario;
      }));
@@ -33,7 +35,6 @@ export class RestService {
 
         return this.http.post( url, user )
           .pipe( map( (res: any ) => {
-            console.log( res );
             return res;
            } ) );
       }
@@ -45,7 +46,6 @@ export class RestService {
 
         return this.http.post(url , data)
            .pipe( map( (res: any ) => {
-             console.log(res);
              return res;
          } ) );
       }

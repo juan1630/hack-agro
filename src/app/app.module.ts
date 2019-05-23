@@ -17,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 
 import { environment } from '../environments/environment.prod';
-import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './component/login/login.component';
 import { GraficoComponent } from './component/grafico/grafico.component';
 import { RegisterComponent } from './component/register/register.component';
@@ -44,10 +43,7 @@ const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
     ReactiveFormsModule,
     HttpClientModule,
     SocketIoModule.forRoot(config),
-    RouterModule.forRoot( routes, { useHash: false } ),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCn2YA96kDTaKhTQePpEt8bpNf_9QVYJnU'
-    })
+    RouterModule.forRoot( routes, { useHash: false } )
   ],
   providers: [],
   bootstrap: [AppComponent]

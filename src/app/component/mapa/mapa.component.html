@@ -4,12 +4,12 @@
 <p class="text-center"> Para que las demás personas se encuentren al pendiente.</p>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 animated fadeInDown">
-            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
-                <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
-                    <agm-info-window>{{ plaga }}</agm-info-window>
-                </agm-marker>
-            </agm-map>
+        <div class="col-md-6">
+            <!--- INICIO DE LOS  MAPAS -->
+            <div #map id="map" class="map">
+
+            </div>
+            <!--- FIN DE LOS  MAPAS -->
         </div>
         <div class="col-md-6">
             <form #f='ngForm' (ngSubmit)="agregarPlaga(f)">
@@ -20,17 +20,46 @@
                 </div>
             </form>
         </div>
-    </div>
 
-    <!-- (click)="agregarPlaga(f.value)" -->
-
-    <div class="col-md-6 animated fadeInDown">
-        <div>
+        <div class="col-md-5   grafica">
             <div>
-                <div style="display: block">
-                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType">
-                     </canvas>
+                <div>
+                    <div style="display: block">
+                        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType">
+                         </canvas>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>.
+        <div class="col-md-7">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="thead-dark"> Región </th>
+                        <th class="thead-dark"> Minimos </th>
+                        <th class="thead-dark"> Maximos (Max) </th>
+                        <th class="thead-dark"> Nombre de la plaga </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let plaga of plagasResp; let i of index">
+                        <td>
+                            Zona oriente
+                        </td>
+                        <td> 0 </td>
+                        <td>{{ plaga }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- (click)="agregarPlaga(f.value)" -->
+
+<!--  
+           <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="clickMap( $event )">
+                <agm-marker [latitude]="marcador.lat" [longitude]="marcador.lng" (dragEnd)="dragEndMarcador(marcador, $event)" (markerClick)=" clickMarcador(marcador, i) " [markerDraggable]="marcador.draggable " *ngFor="let marcador of _ms.marcadores; let i = index ">
+                    <agm-info-window>{{ plaga }}</agm-info-window>
+                </agm-marker>
+            </agm-map>
+ -->
